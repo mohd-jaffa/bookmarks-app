@@ -1,9 +1,12 @@
 require("dotenv").config();
-const { app } = require("./app");
+const express = require("express");
 
-const port = process.env.PORT || 4000;
+const app = express();
 
-app.listen(port, () => {
-  // eslint-disable-next-line no-console
-  console.log(`Backend listening on port ${port}`);
+app.use(express.json());
+
+app.get("/api/hello", (req, res) => {
+    res.json({ message: "Hello from backend" });
 });
+
+module.exports = { app };
